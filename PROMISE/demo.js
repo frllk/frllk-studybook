@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-12-27 21:00:30
- * @LastEditTime: 2022-01-04 22:34:37
+ * @LastEditTime: 2022-01-04 22:37:39
  * @LastEditors: Please set LastEditors
  * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  * @FilePath: \PROMISE-PRO\demo.js
@@ -122,8 +122,9 @@ let promise = new Promise((resolve, reject) => {
 promise.then((res) => {
   console.log('Then');
   // console.log('res', res);
-}, (err) => {
-  console.log(1, err);
+  return new Promise((resolve, reject) => resolve('成功'))
+}).then((res) => {
+  console.log(res);
 })
 
 console.log('Global');
