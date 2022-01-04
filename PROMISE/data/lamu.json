@@ -1,0 +1,8 @@
+{
+  "username": "lamu",
+  "courses": [
+    { "id": 1, "name": "JavaScript" },
+    { "id": 2, "name": "HTML" },
+    { "id": 4, "name": "React" }
+  ]
+}

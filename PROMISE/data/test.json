@@ -1,0 +1,18 @@
+{
+  "username": "leimu",
+  "courses": [
+    {
+      "id": 1,
+      "name": "JavaScript"
+    },
+    {
+      "id": 4,
+      "name": "React"
+    },
+    {
+      "id": 5,
+      "name": "Vue"
+    }
+  ]
+}
+// leimu.json
