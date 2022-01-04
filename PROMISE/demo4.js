@@ -46,3 +46,18 @@ Promise.all([
 // iterable内部没有元素，返回空数组
 // 有一个promise是rejected 实例回调 rejected
 // 失败的原因是第一个失败的promise结果
+
+readFile('./data/user.json').then(res => {
+  console.log(res);
+  // return Promise.resolve('成功啦~~~w')
+  return Promise.reject('失败了')
+  // return new Promise((resolve, reject) => resolve('成功啦~~~'))
+})
+  .then(res => {
+  console.log(res);
+  }, err => {
+    console.log('then: ', err);
+  })
+  .catch(err => {
+  console.log('reject: ', err);
+})
