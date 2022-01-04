@@ -1,8 +1,9 @@
 const fs = require('fs')
+let num = 1
 function readFile(path, isSetError) {
   return new Promise((resolve, reject) => {
     fs.readFile(path, 'utf8', function (err, data) {
-      if (err || isSetError) reject('承诺石沉大海了~~~')
+      if (err || isSetError) reject('承诺石沉大海了~~~' + num++)
       const resData = JSON.parse(data)
       resolve(resData)
     })
@@ -26,9 +27,9 @@ function readFile(path, isSetError) {
 
 // 可迭代的对象，iterable类型的数据 -> Array  Set  Map
 Promise.all([
-  // readFile('./data/user.json'),
-  // readFile('./data/userCourse.json'),
-  // readFile('./data/course.json')
+  readFile('./data/user.json'),
+  readFile('./data/userCourse.json', true),
+  readFile('./data/course.json', true)
   // 0,
   // '123',
   // true
@@ -36,7 +37,12 @@ Promise.all([
   .then(res => {
   console.log(res);
   })
+  .catch(err => {
+    console.log(err);
+  })
 // 用于多个异步任务并发运行，他的结果创建承诺之后使用，等待所有任务结果的完成
 // iterable内部元素传递的是promise对象集合，如果不是promise，直接resolve
 // Promise.resolve(0 || '123' || true)
 // iterable内部没有元素，返回空数组
+// 有一个promise是rejected 实例回调 rejected
+// 失败的原因是第一个失败的promise结果
