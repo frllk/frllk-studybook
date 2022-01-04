@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-12-27 21:00:30
- * @LastEditTime: 2022-01-04 23:06:51
+ * @LastEditTime: 2022-01-05 07:49:46
  * @LastEditors: Please set LastEditors
  * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  * @FilePath: \PROMISE-PRO\demo.js
@@ -103,11 +103,11 @@
 // 解决异步流程化的一种手段（异步：互不相干，互不影响； 流程化：用异步这种方法的时候，需要一个先后顺序）    promise
 
 // Promise 构造函数 需要new
-// Promise 参数 excutor 执行器
-// excutor  -> resolve reject 都是函数
-// excutor： 在new Promise 时调用
+// Promise 参数 executor 执行器
+// executor  -> resolve reject 都是函数
+// executor： 在new Promise 时调用
 
-// excutor是同步执行的
+// executor是同步执行的
 // let promise = new Promise((resolve, reject) => {
 //   console.log(1)
 // })
