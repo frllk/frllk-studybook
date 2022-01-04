@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-12-27 21:00:30
- * @LastEditTime: 2022-01-04 22:37:39
+ * @LastEditTime: 2022-01-04 22:47:12
  * @LastEditors: Please set LastEditors
  * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  * @FilePath: \PROMISE-PRO\demo.js
@@ -114,20 +114,21 @@
 // console.log(2);
 
 let promise = new Promise((resolve, reject) => {
-  resolve('承诺实现')
-  // reject('承诺石沉大海')
+  // resolve('承诺实现')
+  reject('承诺石沉大海')
 })
 
 // then是异步调用
+// then reject具有穿透作用
 promise.then((res) => {
-  console.log('Then');
-  // console.log('res', res);
-  return new Promise((resolve, reject) => resolve('成功'))
+  console.log('1');
 }).then((res) => {
-  console.log(res);
+  
+}, (err) => {
+  console.log('then', err);
+}).catch((err) => {
+  console.log('catch', err);
 })
-
-console.log('Global');
 
 
 // resolve  reject  pending
