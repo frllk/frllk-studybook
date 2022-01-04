@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-12-27 21:00:30
- * @LastEditTime: 2022-01-04 22:47:12
+ * @LastEditTime: 2022-01-04 23:06:51
  * @LastEditors: Please set LastEditors
  * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  * @FilePath: \PROMISE-PRO\demo.js
@@ -115,7 +115,8 @@
 
 let promise = new Promise((resolve, reject) => {
   // resolve('承诺实现')
-  reject('承诺石沉大海')
+  // reject('承诺石沉大海')
+  throw new Error('error：承诺石沉大海')
 })
 
 // then是异步调用
