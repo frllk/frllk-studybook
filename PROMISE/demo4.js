@@ -44,10 +44,10 @@ Promise.all([
 // iterable内部元素传递的是promise对象集合，如果不是promise，直接resolve
 // Promise.resolve(0 || '123' || true)
 // iterable内部没有元素，返回空数组
-// 有一个promise是rejected 实例回调 rejected
+// 有一个promise是rejected 实例会调 rejected
 // 失败的原因是第一个失败的promise结果
 
-readFile('./data/user.json').then(res => {
+readFile('./data/user.json').then(res => { 
   console.log(res);
   // return Promise.resolve('成功啦~~~w')
   return Promise.reject('失败了')
