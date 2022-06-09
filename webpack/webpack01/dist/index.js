@@ -97,4 +97,11 @@ eval("// import css from './index.css'\r\nconsole.log('Hello webpack')\n\n//# so
 
 /***/ })
 
-/******/ });
+  /******/
+});
+
+// 参数{}：称为依赖图谱 模块的路径以及该模块被打包编译后生成的chunk（代码片段）
+// eval
+(function () {
+  
+})({})
