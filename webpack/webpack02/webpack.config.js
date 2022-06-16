@@ -1,11 +1,3 @@
-/*
- * @Autor: frllk
- * @Description: 
- * @Date: 2022-06-07 22:57:30
- * @LastEditors: frllk
- * @LastEditTime: 2022-06-11 17:26:56
- * @FilePath: \frllk-studybook\webpack\webpack01\webpack.config.js
- */
 // webpack的配置文件
 const { resolve, format } = require("path")
 const htmlwebpackPlugin = require("html-webpack-plugin")
@@ -18,27 +10,19 @@ module.exports = {
   // 入口
   // spa：单页面应用
   // mpa：多页面应用   多入口  对应  多出口
-  // entry: "./src/index.js",
-  entry: {
-    // index: modules = [index.js, a.js] = [chunk, chunk] = chunks
-    // index == chunkName
-    index: "./src/index.js", // index.js  a.js index.css
-    login: "./src/login.js" // login.js
-  },
+  entry: "./src/index.js",
   // 出口
   output: {
     // 生成的资源存放的位置, 必须是绝对路径
     path: resolve(__dirname, './build') ,
     // 生成的资源文件名
-    // filename: 'index.js'  // 占位符 [name]
-    filename: '[name][chunkhash:8].js'  // 占位符 [name]，⽂件名称不要重复
+    filename: '[name].js'  // 占位符 [name]
   },
   mode: "development", // none（既无开发体验，也无优化） development（开发体验） production(优化)
   module: {
     rules: [
       {
         test: /\.css$/,
-        // use: ['style-loader', 'css-loader'] // 执行顺序：自后往前
         use: [miniCssPlugin.loader, 'css-loader'] // 执行顺序：自后往前
       }
     ]
