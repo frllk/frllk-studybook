@@ -3,7 +3,7 @@
  * @Description: 
  * @Date: 2022-06-07 22:57:30
  * @LastEditors: frllk
- * @LastEditTime: 2022-06-18 22:50:43
+ * @LastEditTime: 2022-06-18 23:06:20
  * @FilePath: \frllk-studybook\webpack\webpack02\webpack.config.js
  */
 // webpack的配置文件
@@ -33,6 +33,7 @@ module.exports = {
     filename: '[name][chunkhash:8].js'  // 占位符 [name]，⽂件名称不要重复
   },
   mode: "development", // none（既无开发体验，也无优化） development（开发体验） production(优化)
+  // 7. 如何处理路径问题: 解决了问题7
   resolveLoader: {
     modules: ["./node_modules", "./myLoaders"]
   },
@@ -63,10 +64,10 @@ module.exports = {
         test: /\.js$/, // 如果遇到js后缀的文件，用自己写的loader进行处理
         // 使用第三方的loader默认去node_modules去查找，如果是使用自己写的loader，则是通过path，生成绝对路径
         // use: resolve(__dirname, "./myLoaders/frllk-loader.js")
-        // 配置化需求
+        // 配置化需求：解决了问题6
         // use: [
         //   {
-        //     loader: resolve(__dirname, "./myLoaders/frllk-loader-async.js"),
+        //     loader: resolve(__dirname, "./myLoaders/frllk-loader-async.js"), // 需要使⽤node核⼼模块path来处理路径
         //     options: {
         //       name: 'frllk'
         //     }
@@ -74,7 +75,7 @@ module.exports = {
         //   },
         //   resolve(__dirname, "./myLoaders/frllk-loader.js") // console.log('Hello webpack!!!')
         // ]
-        // 路径处理：
+        // 路径处理：解决问题7
         use: [
           {
             loader: "frllk-loader-async",

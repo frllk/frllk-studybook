@@ -3,7 +3,7 @@
  * @Description: 
  * @Date: 2022-06-18 17:33:31
  * @LastEditors: frllk
- * @LastEditTime: 2022-06-18 22:58:21
+ * @LastEditTime: 2022-06-18 23:07:24
  * @FilePath: \frllk-studybook\webpack\webpack02\myLoaders\frllk-loader-async.js
  */
 /**
@@ -30,16 +30,19 @@
  *    webpack.config.js文件中配置resolveLoader
  */
 
-module.exports = function (source) {
+module.exports = function (source) { // 问题1
   // return source.replace('Hello', this.query.name)
+  // 问题2、3
     // const info = source.replace('Hello', this.query.name)
     // this.callback(null, info)
   
+    // 问题4
   //   setTimeout(() => {
   //   const info = source.replace('Hello', this.query.name)
   //   return info // Final loader (./myLoaders/frllk-loader.js) didn't return a Buffer or String
   // }, 2000);
 
+  // 解决问题5
   const callback = this.async()
   setTimeout(() => {
     const info = source.replace('Hello', this.query.name)
