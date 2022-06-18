@@ -3,7 +3,7 @@
  * @Description: 
  * @Date: 2022-06-07 22:57:30
  * @LastEditors: frllk
- * @LastEditTime: 2022-06-18 23:06:20
+ * @LastEditTime: 2022-06-18 23:21:02
  * @FilePath: \frllk-studybook\webpack\webpack02\webpack.config.js
  */
 // webpack的配置文件
@@ -46,47 +46,55 @@ module.exports = {
       {
         test: /\.less$/,
         use: [
-          miniCssPlugin.loader,
-          'css-loader',
-          'postcss-loader',
-          'less-loader'
-        ] // 执行顺序：自后往前   //! 不知为何entry为单入口的时候生成的文件没有自动引入css和js
-        /**
-         * 关于样式常见的场景：
-         * 如何支持样式
-         * 如何支持less sass
-         * 如何支持postcss
-         * 如何把样式处理成独立文件
-         * css进行模块化
-         */
-      },
-      {
-        test: /\.js$/, // 如果遇到js后缀的文件，用自己写的loader进行处理
-        // 使用第三方的loader默认去node_modules去查找，如果是使用自己写的loader，则是通过path，生成绝对路径
-        // use: resolve(__dirname, "./myLoaders/frllk-loader.js")
-        // 配置化需求：解决了问题6
-        // use: [
-        //   {
-        //     loader: resolve(__dirname, "./myLoaders/frllk-loader-async.js"), // 需要使⽤node核⼼模块path来处理路径
-        //     options: {
-        //       name: 'frllk'
-        //     }
-        //     // console.log('frllk webpack!!!')
-        //   },
-        //   resolve(__dirname, "./myLoaders/frllk-loader.js") // console.log('Hello webpack!!!')
-        // ]
-        // 路径处理：解决问题7
-        use: [
-          {
-            loader: "frllk-loader-async",
-            options: {
-              name: 'frllk'
-            }
-            // console.log('frllk webpack!!!')
-          },
-          "frllk-loader" // console.log('Hello webpack!!!')
+          'frllk-style-loader',
+          'frllk-css-loader',
+          'frllk-less-loader'
         ]
       },
+      // {
+      //   test: /\.less$/,
+      //   use: [
+      //     miniCssPlugin.loader,
+      //     'css-loader',
+      //     'postcss-loader',
+      //     'less-loader'
+      //   ] // 执行顺序：自后往前   //! 不知为何entry为单入口的时候生成的文件没有自动引入css和js
+      //   /**
+      //    * 关于样式常见的场景：
+      //    * 如何支持样式
+      //    * 如何支持less sass
+      //    * 如何支持postcss
+      //    * 如何把样式处理成独立文件
+      //    * css进行模块化
+      //    */
+      // },
+      // {
+      //   test: /\.js$/, // 如果遇到js后缀的文件，用自己写的loader进行处理
+      //   // 使用第三方的loader默认去node_modules去查找，如果是使用自己写的loader，则是通过path，生成绝对路径
+      //   // use: resolve(__dirname, "./myLoaders/frllk-loader.js")
+      //   // 配置化需求：解决了问题6
+      //   // use: [
+      //   //   {
+      //   //     loader: resolve(__dirname, "./myLoaders/frllk-loader-async.js"), // 需要使⽤node核⼼模块path来处理路径
+      //   //     options: {
+      //   //       name: 'frllk'
+      //   //     }
+      //   //     // console.log('frllk webpack!!!')
+      //   //   },
+      //   //   resolve(__dirname, "./myLoaders/frllk-loader.js") // console.log('Hello webpack!!!')
+      //   // ]
+      //   // 路径处理：解决问题7
+      //   use: [
+      //     {
+      //       loader: "frllk-loader-async",
+      //       options: {
+      //         name: 'frllk'
+      //       }
+      //       // console.log('frllk webpack!!!')
+      //     },
+      //     "frllk-loader" // console.log('Hello webpack!!!')
+      //   ]
+      // },
     ]
   },
   plugins: [
