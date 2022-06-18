@@ -26,3 +26,8 @@ console.log('Hello webpack')
  * 如何把样式处理成独立文件
  * css进行模块化
  */
+
+/**
+ * 实现自定义的loader
+ * 
+ */
