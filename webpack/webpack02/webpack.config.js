@@ -3,7 +3,7 @@
  * @Description: 
  * @Date: 2022-06-07 22:57:30
  * @LastEditors: frllk
- * @LastEditTime: 2022-06-16 23:14:24
+ * @LastEditTime: 2022-06-18 13:14:16
  * @FilePath: \frllk-studybook\webpack\webpack02\webpack.config.js
  */
 // webpack的配置文件
@@ -41,7 +41,20 @@ module.exports = {
       },
       {
         test: /\.less$/,
-        use: [miniCssPlugin.loader, 'css-loader', 'less-loader'] // 执行顺序：自后往前   //! 不知为何entry为单入口的时候生成的文件没有自动引入css和js
+        use: [
+          miniCssPlugin.loader,
+          'css-loader',
+          'postcss-loader',
+          'less-loader'
+        ] // 执行顺序：自后往前   //! 不知为何entry为单入口的时候生成的文件没有自动引入css和js
+        /**
+         * 关于样式常见的场景：
+         * 如何支持样式
+         * 如何支持less sass
+         * 如何支持postcss
+         * 如何把样式处理成独立文件
+         * css进行模块化
+         */
       }
     ]
   },
