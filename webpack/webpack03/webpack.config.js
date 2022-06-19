@@ -3,7 +3,7 @@
  * @Description: 
  * @Date: 2022-06-07 22:57:30
  * @LastEditors: frllk
- * @LastEditTime: 2022-06-19 22:56:07
+ * @LastEditTime: 2022-06-19 23:47:53
  * @FilePath: \frllk-studybook\webpack\webpack03\webpack.config.js
  */
 // webpack的配置文件
@@ -71,22 +71,53 @@ module.exports = {
        *    所以对图片转成base4的话，一定要设置一个预值，当图片的体积大于这个值的话就不转化，小于这个值的话就转。
        * 转成base64的好处：把图片资源转换成base64的话，可以减少一次请求，从而达到优化的目的
        */
+      // {
+      //   test: /\.(png|jpe?g|gif|webp)$/, // 解决图片格式问题
+      //   use: {
+      //     // loader: 'file-loader',
+      //     loader: 'url-loader',
+      //     options: {
+      //       // name: 'images/[name].[ext]', // 方法二：不使用outputPath，在name中的名字前加上目录路径
+      //       name: '[name].[ext]', // 解决图片名的问题
+      //       outputPath: "images", // 解决问题目录管理：方法一：通过outputPath设置图片资源的存放位置
+      //       // 图片资源如何引入的位置：解决对资源文件做了目录管理造成的路径引用出错问题
+      //       publicPath: '../images', // ../images/img.jpg
+      //       limit: 11 * 1024, // 1kb === 1024  limit: 预值
+      //     }
+      //   }
+      // },
+      // image-webpack-loader必须在url-loader或者file-loader之前使用
+      // loader执行顺序：当多个loader作用于同一个模块的时候，顺序为自下往上，自后往前
       {
         test: /\.(png|jpe?g|gif|webp)$/, // 解决图片格式问题
+        use: [
+          {
+            // loader: 'file-loader',
+            loader: 'url-loader',
+            options: {
+              // name: 'images/[name].[ext]', // 方法二：不使用outputPath，在name中的名字前加上目录路径
+              name: '[name].[ext]', // 解决图片名的问题
+              outputPath: "images", // 解决问题目录管理：方法一：通过outputPath设置图片资源的存放位置
+              // 图片资源如何引入的位置：解决对资源文件做了目录管理造成的路径引用出错问题
+              publicPath: '../images', // ../images/img.jpg
+              limit: 11 * 1024, // 1kb === 1024  limit: 预值
+            }
+          },
+          "image-webpack-loader"
+        ]
+      },
+      {
+        test: /\.(eot|woff|woff2|wvg|ttf)$/,
         use: {
-          // loader: 'file-loader',
-          loader: 'url-loader',
+          loader: 'file-loader',
+          // loader: 'url-loader',
           options: {
-            // name: 'images/[name].[ext]', // 方法二：不使用outputPath，在name中的名字前加上目录路径
-            name: '[name].[ext]', // 解决图片名的问题
-            outputPath: "images", // 解决问题目录管理：方法一：通过outputPath设置图片资源的存放位置
-            // 图片资源如何引入的位置：解决对资源文件做了目录管理造成的路径引用出错问题
-            publicPath: '../images', // ../images/img.jpg
-            limit: 11 * 1024, // 1kb === 1024  limit: 预值
+            name: '[name].[ext]',
+            outputPath: 'font',
+            publicPath: '../font'
           }
         }
-      },
-
+      }
     ]
   },
   plugins: [
