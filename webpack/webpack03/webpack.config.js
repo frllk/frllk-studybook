@@ -3,7 +3,7 @@
  * @Description: 
  * @Date: 2022-06-07 22:57:30
  * @LastEditors: frllk
- * @LastEditTime: 2022-06-19 23:47:53
+ * @LastEditTime: 2022-06-20 00:00:48
  * @FilePath: \frllk-studybook\webpack\webpack03\webpack.config.js
  */
 // webpack的配置文件
@@ -22,15 +22,16 @@ module.exports = {
   entry: {
     // index: modules = [index.js, a.js] = [chunk, chunk] = chunks
     // index == chunkName
-    index: "./src/index.js", // index.js  a.js index.css
+    index: "./src/index.js",
+    detail: "./src/detail.js",
   },
-  // 出口
+  // 出口, 多入口对应多出口
   output: {
     // 生成的资源存放的位置, 必须是绝对路径
     path: resolve(__dirname, './dist') ,
     // 生成的资源文件名
     // filename: 'index.js'  // 占位符 [name]
-    filename: '[name][chunkhash:8].js'  // 占位符 [name]，⽂件名称不要重复
+    filename: 'js/[name][chunkhash:8].js'  // 占位符 [name]，⽂件名称不要重复
   },
   mode: "development", // none（既无开发体验，也无优化） development（开发体验） production(优化)
   // 7. 如何处理路径问题: 解决了问题7
@@ -129,6 +130,11 @@ module.exports = {
       template: "./src/public/index.html",
       filename: "index.html",
       chunks: ["index"]
+    }),
+    new htmlwebpackPlugin({
+      template: "./src/public/detail.html",
+      filename: "detail.html",
+      chunks: ["detail"]
     })
   ],
 }

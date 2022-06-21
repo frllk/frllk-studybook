@@ -3,7 +3,7 @@
  * @Description: 
  * @Date: 2022-06-19 10:23:51
  * @LastEditors: frllk
- * @LastEditTime: 2022-06-19 11:26:22
+ * @LastEditTime: 2022-06-19 23:56:37
  * @FilePath: \frllk-studybook\webpack\webpack03\src\index.js
  */
 import css from './style/index.less'
@@ -31,4 +31,8 @@ import pic from './images/img.jpg' // 用什么loader？file-loader、url-loader
  *          前提：对资源文件做了目录管理
  *          对图片进行目录管理没有问题
  *          如果css和图片都做了目录管理，css中图片的路径就对不上了，通过设置file-loader中的publicPath来解决问题
+ */
+
+/**
+ * 多页面打包通用解决方案
  */
