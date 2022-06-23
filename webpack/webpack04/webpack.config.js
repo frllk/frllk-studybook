@@ -3,7 +3,7 @@
  * @Description: 
  * @Date: 2022-06-07 22:57:30
  * @LastEditors: frllk
- * @LastEditTime: 2022-06-22 23:32:59
+ * @LastEditTime: 2022-06-23 23:48:16
  * @FilePath: \frllk-studybook\webpack\webpack04\webpack.config.js
  */
 // webpack的配置文件
@@ -88,29 +88,29 @@ module.exports = {
         test: /\.js$/,
         use: {
           loader: "babel-loader",
-          options: {
-            presets: [
-              // "@babel/preset-env" // 做语法编译
-              [
-                "@babel/preset-env",
-                {
-                  // 目标浏览器集合
-                  targets: {
-                    edge: "17",
-                    firefox: "60",
-                    chrome: "67",
-                    safari: "11.1"
-                  },
-                  corejs: 2,//新版本需要指定核⼼库版本
-                  useBuiltIns: "usage"//按需注⼊
-                  // useBuiltIns: 设置babel如何配置babel/polyfill
-                  // entry: 需要在webpack的入口模块里 写上 import "@babel/polyfill"，babel就会根据我们的代码情况，导入相应的垫片（特性代码），没有使用到的特性不会被导入
-                  // usage: 不需要在入口模块写上import代码，它是一个全自动检测的过程
-                  // false: 默认值，不会开启监测和识别，导致打包出来的文件特别大
-                  }
-                ]
-            ]
-          }
+          // options: {
+          //   presets: [
+          //     // "@babel/preset-env" // 做语法编译
+          //     [
+          //       "@babel/preset-env",
+          //       {
+          //         // 目标浏览器集合
+          //         targets: {
+          //           edge: "17",
+          //           firefox: "60",
+          //           chrome: "67",
+          //           safari: "11.1"
+          //         },
+          //         corejs: 2,//新版本需要指定核⼼库版本
+          //         useBuiltIns: "usage"//按需注⼊
+          //         // useBuiltIns: 设置babel如何配置babel/polyfill
+          //         // entry: 需要在webpack的入口模块里 写上 import "@babel/polyfill"，babel就会根据我们的代码情况，导入相应的垫片（特性代码），没有使用到的特性不会被导入
+          //         // usage: 不需要在入口模块写上import代码，它是一个全自动检测的过程
+          //         // false: 默认值，不会开启监测和识别，导致打包出来的文件特别大
+          //         }
+          //       ]
+          //   ]
+          // }
         }
       }
     ]
