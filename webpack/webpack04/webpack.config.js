@@ -3,8 +3,8 @@
  * @Description: 
  * @Date: 2022-06-07 22:57:30
  * @LastEditors: frllk
- * @LastEditTime: 2022-06-20 00:00:48
- * @FilePath: \frllk-studybook\webpack\webpack03\webpack.config.js
+ * @LastEditTime: 2022-06-22 23:32:59
+ * @FilePath: \frllk-studybook\webpack\webpack04\webpack.config.js
  */
 // webpack的配置文件
 const { resolve, format } = require("path")
@@ -23,7 +23,6 @@ module.exports = {
     // index: modules = [index.js, a.js] = [chunk, chunk] = chunks
     // index == chunkName
     index: "./src/index.js",
-    detail: "./src/detail.js",
   },
   // 出口, 多入口对应多出口
   output: {
@@ -53,40 +52,6 @@ module.exports = {
           'less-loader'
         ] // 执行顺序：从右到左，从下到上
       },
-      // {
-      //   test: /\.(png|jpe?g|gif|webp)$/, // 解决图片格式问题
-      //   use: {
-      //     loader: 'file-loader',
-      //     options: {
-      //       // name: 'images/[name].[ext]', // 方法二：不使用outputPath，在name中的名字前加上目录路径
-      //       name: '[name].[ext]', // 解决图片名的问题
-      //       outputPath: "images", // 解决问题目录管理：方法一：通过outputPath设置图片资源的存放位置
-      //       // 图片资源如何引入的位置：解决对资源文件做了目录管理造成的路径引用出错问题
-      //       publicPath: '../images', // ../images/img.jpg
-      //     }
-      //   }
-      // },
-      /**
-       * url-loader依赖于file-loader
-       * 图片体积大，转换为base64的时候，字符多，间接影响到了css的体积。
-       *    所以对图片转成base4的话，一定要设置一个预值，当图片的体积大于这个值的话就不转化，小于这个值的话就转。
-       * 转成base64的好处：把图片资源转换成base64的话，可以减少一次请求，从而达到优化的目的
-       */
-      // {
-      //   test: /\.(png|jpe?g|gif|webp)$/, // 解决图片格式问题
-      //   use: {
-      //     // loader: 'file-loader',
-      //     loader: 'url-loader',
-      //     options: {
-      //       // name: 'images/[name].[ext]', // 方法二：不使用outputPath，在name中的名字前加上目录路径
-      //       name: '[name].[ext]', // 解决图片名的问题
-      //       outputPath: "images", // 解决问题目录管理：方法一：通过outputPath设置图片资源的存放位置
-      //       // 图片资源如何引入的位置：解决对资源文件做了目录管理造成的路径引用出错问题
-      //       publicPath: '../images', // ../images/img.jpg
-      //       limit: 11 * 1024, // 1kb === 1024  limit: 预值
-      //     }
-      //   }
-      // },
       // image-webpack-loader必须在url-loader或者file-loader之前使用
       // loader执行顺序：当多个loader作用于同一个模块的时候，顺序为自下往上，自后往前
       {
@@ -118,6 +83,35 @@ module.exports = {
             publicPath: '../font'
           }
         }
+      },
+      {
+        test: /\.js$/,
+        use: {
+          loader: "babel-loader",
+          options: {
+            presets: [
+              // "@babel/preset-env" // 做语法编译
+              [
+                "@babel/preset-env",
+                {
+                  // 目标浏览器集合
+                  targets: {
+                    edge: "17",
+                    firefox: "60",
+                    chrome: "67",
+                    safari: "11.1"
+                  },
+                  corejs: 2,//新版本需要指定核⼼库版本
+                  useBuiltIns: "usage"//按需注⼊
+                  // useBuiltIns: 设置babel如何配置babel/polyfill
+                  // entry: 需要在webpack的入口模块里 写上 import "@babel/polyfill"，babel就会根据我们的代码情况，导入相应的垫片（特性代码），没有使用到的特性不会被导入
+                  // usage: 不需要在入口模块写上import代码，它是一个全自动检测的过程
+                  // false: 默认值，不会开启监测和识别，导致打包出来的文件特别大
+                  }
+                ]
+            ]
+          }
+        }
       }
     ]
   },
@@ -131,10 +125,5 @@ module.exports = {
       filename: "index.html",
       chunks: ["index"]
     }),
-    new htmlwebpackPlugin({
-      template: "./src/public/detail.html",
-      filename: "detail.html",
-      chunks: ["detail"]
-    })
   ],
 }
