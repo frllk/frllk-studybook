@@ -12,6 +12,7 @@
         "corejs": 2,
         "useBuiltIns": "usage"
         }
-      ]
+      ],
+      "@babel/preset-react"
   ]
 }
