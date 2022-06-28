@@ -3,7 +3,7 @@
  * @Description: 
  * @Date: 2022-06-07 22:57:30
  * @LastEditors: frllk
- * @LastEditTime: 2022-06-23 23:48:16
+ * @LastEditTime: 2022-06-28 23:45:22
  * @FilePath: \frllk-studybook\webpack\webpack04\webpack.config.js
  */
 // webpack的配置文件
@@ -11,6 +11,7 @@ const { resolve, format } = require("path")
 const htmlwebpackPlugin = require("html-webpack-plugin")
 const { CleanWebpackPlugin } = require("clean-webpack-plugin") 
 const miniCssPlugin = require("mini-css-extract-plugin")
+const myPlugin = require("./myPlugins/txt-webpack-plugin")
 
 // webpack是基于nodeJS
 // 原理就是通过shell脚本在node_modules/.bin⽬录下创建⼀个软链接
@@ -116,6 +117,10 @@ module.exports = {
     ]
   },
   plugins: [
+    // 往相应的钩子中注册事件
+    new myPlugin({
+      name: 'frllk'
+    }),
     new CleanWebpackPlugin(), // 目录清理
     new miniCssPlugin({
       filename: "style/index.css"
